@@ -1,0 +1,38 @@
+<div id="legend">
+  <legend class="">Register</legend>
+</div>
+<form [formGroup]="signUpForm">
+  <div class="form-group">
+    <!-- First name -->
+    <label for="firstname">First name</label>
+    <input type="text" id="firstname" name="firstname" placeholder="" class="form-control" formControlName="firstName">
+  </div>
+  <div class="form-group">
+    <!-- Last name -->
+    <label for="lastname">Last name</label>
+    <input type="text" id="lastname" name="lastname" placeholder="" class="form-control" formControlName="lastName">
+  </div>
+
+  <div class="form-group">
+    <!-- E-mail -->
+    <label for="mail">Mail</label>
+    <input type="text" id="mail" name="mail" placeholder="" class="form-control" formControlName="mail">
+  </div>
+
+  <div class="form-group">
+    <!-- Password-->
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="" class="form-control" formControlName="password">
+  </div>
+
+  <div class="form-group">
+    <!-- Password -->
+    <label for="confirmPassword">Password (Confirm)</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="" class="form-control"
+      formControlName="confirmPassword">
+  </div>
+
+
+  <button class="btn btn-success" (click)="onSubmit()" [disabled]="!signUpForm.valid">Register</button>
+
+</form>

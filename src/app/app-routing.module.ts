@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuizzComponent } from './quizz/quizz.component';
 import { QuizzInstanceComponent } from './quizz-instance/quizz-instance.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { QuizzFormComponent } from './quizz-form/quizz-form.component';
 
 const routes: Routes = [
+  { path: 'quizz-form', component: QuizzFormComponent },
+  { path: 'quizz-instance', component: QuizzInstanceComponent },
   { path: 'quizz', component: QuizzComponent },
-  { path: 'quizz-instance', component: QuizzInstanceComponent }
+  { path: 'signup', component: SignUpComponent }
 ];
 
 @NgModule({

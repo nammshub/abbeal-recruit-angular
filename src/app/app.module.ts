@@ -11,6 +11,12 @@ import { QuizzService } from './quizz/quizz.service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { QuizzContentComponent } from './quizz-content/quizz-content.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuizzFormComponent } from './quizz-form/quizz-form.component';
+import { QuestionComponent } from './question/question.component';
+import { QuestionService } from './question/question.service';
 
 @NgModule({
   declarations: [
@@ -20,16 +26,22 @@ import { QuizzContentComponent } from './quizz-content/quizz-content.component';
     QuizzInstanceComponent,
     QuizzListComponent,
     UserComponent,
-    QuizzContentComponent
+    QuizzContentComponent,
+    SignInComponent,
+    SignUpComponent,
+    QuizzFormComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     QuizzService,
-    HttpClient
+    HttpClient,
+    QuestionService
     
   ],
   bootstrap: [AppComponent]

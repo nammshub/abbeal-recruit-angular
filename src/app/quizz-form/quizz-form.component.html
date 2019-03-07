@@ -1,0 +1,44 @@
+<form [formGroup]="newQuizzForm">
+  <div class="form-group">
+    <!-- First name -->
+    <label for="name" class="font-weight-bold text-uppercase">Quizz name</label>
+    <input type="text" id="name" name="name" placeholder="" class="form-control" formControlName="name">
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <button class="btn btn-success" (click)="onAddContent()">Add new content</button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-success" (click)="onSaveQuizz()" [disabled]="!newQuizzForm.valid">Save quizz</button>
+      </div>
+  </div>
+  
+  <hr>
+  <div class="form-group">
+    <label for="contents" class="font-weight-bold text-uppercase" >Contents</label>
+    <div formArrayName="contents">
+      <div class="row" *ngFor="let content of newQuizzForm.get('contents').controls; let i = index" [formGroupName]="i"
+        style="margin-top: 10px;">
+        <div class="col-md-4">
+            <select class="form-control" formControlName="field">
+                <option *ngFor="let field of questionFields" [value]="field">{{field}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control" formControlName="difficulty">
+                <option *ngFor="let difficulty of questionDifficulties" [value]="difficulty">{{difficulty}}</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" formControlName="number" data-toggle="tooltip" title="NUMBER OF QUESTIONS">
+        </div>
+        <div class="col-md-2">
+            <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteContent(i)">X</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>
