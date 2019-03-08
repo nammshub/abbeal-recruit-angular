@@ -1,0 +1,13 @@
+<form [formGroup]="newLinkForm">
+  <div class="form-group">
+    <!-- Candidate mail -->
+    <label for="candidateMail" class="font-weight-bold text-uppercase">Candidate mail (optionnal)</label>
+    <input type="text" id="candidateMail" name="candidateMail" placeholder="" class="form-control"
+      formControlName="candidateMail">
+  </div>
+  <div class="form-group"  *ngIf="newLinkForm.valid">
+    <!-- Link -->
+    <label for="link" class="font-weight-bold text-uppercase">Link to quizz</label>
+    <div id="link" name="link">{{ link }}</div>
+  </div>
+</form>

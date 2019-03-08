@@ -1,3 +1,28 @@
-<p>
-  quizz-list works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Creation Date</th>
+      <th scope="col">State</th>
+      <th scope="col">Link</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let currentQuizz of quizz">
+      <td>{{ currentQuizz.name | uppercase }}</td>
+      <td>{{ currentQuizz.creationDate | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>
+        <button class="btn btn-danger" *ngIf="!currentQuizz.active" (click)="onActivateQuizz(currentQuizz.id)">Inactive</button>
+        <button class="btn btn-success" *ngIf="currentQuizz.active"
+          (click)="onDeactivateQuizz(currentQuizz.id)">Active</button>
+      </td>
+      <td>
+          <button class="btn btn-info" (click)="onGetLink(currentQuizz.id)">Get link</button>
+      </td>
+      <td>
+        <button class="btn btn-info">See details</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

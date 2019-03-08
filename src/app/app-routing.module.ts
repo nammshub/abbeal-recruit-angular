@@ -4,10 +4,12 @@ import { QuizzComponent } from './quizz/quizz.component';
 import { QuizzInstanceComponent } from './quizz-instance/quizz-instance.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { QuizzFormComponent } from './quizz-form/quizz-form.component';
+import { QuizzLinkComponent } from './quizz-link/quizz-link.component';
 
 const routes: Routes = [
   { path: 'quizz-form', component: QuizzFormComponent },
-  { path: 'quizz-instance', component: QuizzInstanceComponent },
+  { path: 'quizz-instance/:id', component: QuizzInstanceComponent },
+  { path: 'quizz-link/:id', component: QuizzLinkComponent},
   { path: 'quizz', component: QuizzComponent },
   { path: 'signup', component: SignUpComponent }
 ];

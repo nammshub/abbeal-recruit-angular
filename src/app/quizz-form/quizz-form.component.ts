@@ -1,42 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizzService } from '../quizz/quizz.service';
 import { QuestionService } from '../question/question.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { Quizz } from '../quizz/quizz.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quizz-form',
   templateUrl: './quizz-form.component.html',
   styleUrls: ['./quizz-form.component.css']
 })
-export class QuizzFormComponent implements OnInit {
+export class QuizzFormComponent implements OnInit, OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   questionFieldsSubscription: Subscription;
   questionFields: string[];
   questionDifficulties: string[];
   newQuizzForm: FormGroup;
   contentsArray: FormArray = new FormArray([]);;
 
-  constructor(private questionService: QuestionService, private quizzService:QuizzService) { }
+  constructor(private questionService: QuestionService, private quizzService: QuizzService, private routerService: Router) { }
 
   ngOnInit() {
-    this.questionFieldsSubscription = this.questionService.questionFieldsChanged
+    this.questionFieldsSubscription = this.questionService.questionFieldsChanged.pipe(takeUntil(this.destroy$))
       .subscribe(
         (questionFields: string[]) => {
           this.questionFields = questionFields;
-          console.log("new quizzList : ");
-          for (let q of this.questionFields) {
-            console.log(q);
-          }
         }
       );
-    this.questionService.getAllQuestionFields();
+    this.questionService.getAllQuestionFields().pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (questionFields: string[]) => {
+          this.questionFields = questionFields;
+        }
+      );
 
     this.newQuizzForm = new FormGroup({
       'name': new FormControl('', Validators.required),
       'contents': this.contentsArray
-    },[this.checkContentPresent]);
+    }, [this.checkContentPresent]);
     this.questionDifficulties = ['NOVICE', 'ADVANCED', 'EXPERT'];
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   onAddContent() {
@@ -51,13 +59,18 @@ export class QuizzFormComponent implements OnInit {
     (<FormArray>this.newQuizzForm.get('contents')).removeAt(index);
   }
 
-  onSaveQuizz(){
-   this.quizzService.saveNewQuizz(this.newQuizzForm);
+  onSaveQuizz() {
+    this.quizzService.saveNewQuizz(this.newQuizzForm).pipe(takeUntil(this.destroy$)).subscribe({
+      next: x => {
+        console.log(x);
+        this.routerService.navigate(['/quizz']);
+      }
+    });
   }
 
   checkContentPresent(group: FormGroup) { // here we have the 'passwords' group
-  let contents:any[] = group.get('contents').value;
-  return contents.length > 0 ? null : { empty: true }     
-}
+    let contents: any[] = group.get('contents').value;
+    return contents.length > 0 ? null : { empty: true }
+  }
 
 }

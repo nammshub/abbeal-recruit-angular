@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuizzFormComponent } from './quizz-form/quizz-form.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionService } from './question/question.service';
+import { QuizzLinkComponent } from './quizz-link/quizz-link.component';
+import { QuizzInstanceService } from './quizz-instance/quizz-instance-service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { QuestionService } from './question/question.service';
     SignInComponent,
     SignUpComponent,
     QuizzFormComponent,
-    QuestionComponent
+    QuestionComponent,
+    QuizzLinkComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import { QuestionService } from './question/question.service';
   providers: [
     QuizzService,
     HttpClient,
-    QuestionService
+    QuestionService,
+    QuizzInstanceService,
+  
     
   ],
   bootstrap: [AppComponent]
