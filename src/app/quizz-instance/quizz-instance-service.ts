@@ -4,11 +4,10 @@ import { QuizzInstance } from './quizz-instance-model';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class QuizzInstanceService {
-
-
     quizzInstance: QuizzInstance;
     quizzInstanceLoaded = new Subject<QuizzInstance>();
 
@@ -18,7 +17,7 @@ export class QuizzInstanceService {
     ) { }
 
     getQuizzInstance(quizzId: string, candidateMail?: string): Observable<any> {
-        let url = 'http://localhost:8080/quizz-instances/' + quizzId;
+        let url = environment.baseBackUrl+'/quizz-instances/' + quizzId;
         if (candidateMail) {
             url += '?mail=' + candidateMail;
         }
@@ -29,11 +28,17 @@ export class QuizzInstanceService {
     }
 
     submitQuizz(quizzCandidateForm: FormGroup): Observable<any> {
-        return this.httpClient.post('http://localhost:8080/quizz-instances',
+        return this.httpClient.post(environment.baseBackUrl+'/quizz-instances',
             {
                 "quizzId": quizzCandidateForm.get('quizzId').value,
                 "candidateMail": quizzCandidateForm.get('candidateMail').value,
                 "questions": quizzCandidateForm.get('questions').value
             });
     }
+
+    warnQuizzCreator(quizzInstanceReturn: any): any {
+        console.log('inside warnQuizzCreator');
+      }
+
+
 }

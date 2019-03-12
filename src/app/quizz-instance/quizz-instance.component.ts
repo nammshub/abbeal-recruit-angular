@@ -81,7 +81,9 @@ export class QuizzInstanceComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.quizzInstanceService.submitQuizz(this.quizzCandidateForm).pipe(takeUntil(this.destroy$)).subscribe({
-      next: x => {
+      next: quizzInstanceReturn=> {
+        console.log(quizzInstanceReturn);
+        this.quizzInstanceService.warnQuizzCreator(quizzInstanceReturn);
         this.routerService.navigate(['/quizz']);
       }
     });

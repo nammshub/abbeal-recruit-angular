@@ -4,6 +4,7 @@ import { Quizz } from './quizz.model';
 import { Observable, Subject } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class QuizzService {
@@ -17,7 +18,7 @@ export class QuizzService {
   ) { }
 
   getAllQuizz(): Observable<any> {
-    return this.httpClient.get<Quizz[]>('http://localhost:8080/quizz', {
+    return this.httpClient.get<Quizz[]>(environment.baseBackUrl+'/quizz', {
       observe: 'body',
       responseType: 'json'
     });
@@ -33,7 +34,7 @@ export class QuizzService {
         "number": content.number
       })
     }
-    return this.httpClient.post('http://localhost:8080/users/1/quizz',
+    return this.httpClient.post(environment.baseBackUrl+'/users/1/quizz',
       {
         "name": newQuizzForm.get('name').value,
         "quizzContents": quizzContents
@@ -41,12 +42,12 @@ export class QuizzService {
   }
 
   activate(id: number): Observable<any> {
-    return this.httpClient.patch('http://localhost:8080/quizz/' + id + '/activate',
+    return this.httpClient.patch(environment.baseBackUrl+'/quizz/' + id + '/activate',
       {});
   }
 
   deactivate(id: number): Observable<any> {
-    return this.httpClient.patch('http://localhost:8080/quizz/' + id + '/deactivate',
+    return this.httpClient.patch(environment.baseBackUrl+'/quizz/' + id + '/deactivate',
       {});
   }
 

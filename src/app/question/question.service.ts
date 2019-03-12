@@ -1,6 +1,7 @@
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class QuestionService {
@@ -13,7 +14,7 @@ export class QuestionService {
   ) { }
 
   getAllQuestionFields():Observable<any> {
-    return this.httpClient.get<string[]>('http://localhost:8080/questions/fields', {
+    return this.httpClient.get<string[]>(environment.baseBackUrl+'/questions/fields', {
       observe: 'body',
       responseType: 'json'
     });
