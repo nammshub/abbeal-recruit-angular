@@ -9,10 +9,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class SignUpComponent implements OnInit {
  signUpForm:FormGroup;
 
-  constructor(private formBuild:FormBuilder) { }
-
- 
-
   ngOnInit() {
     this.signUpForm = new FormGroup({
       'firstName': new FormControl(''),

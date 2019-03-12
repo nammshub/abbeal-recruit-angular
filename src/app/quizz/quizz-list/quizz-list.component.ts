@@ -24,7 +24,6 @@ export class QuizzListComponent implements OnInit, OnDestroy {
     this.quizzService.getAllQuizz().pipe(takeUntil(this.destroy$))
       .subscribe(
         (quizz: Quizz[]) => {
-          console.log(quizz)
           this.quizz = quizz;
         }
       );

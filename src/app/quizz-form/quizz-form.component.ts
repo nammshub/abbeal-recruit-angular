@@ -62,7 +62,6 @@ export class QuizzFormComponent implements OnInit, OnDestroy {
   onSaveQuizz() {
     this.quizzService.saveNewQuizz(this.newQuizzForm).pipe(takeUntil(this.destroy$)).subscribe({
       next: x => {
-        console.log(x);
         this.routerService.navigate(['/quizz']);
       }
     });

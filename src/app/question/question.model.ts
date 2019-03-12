@@ -1,4 +1,5 @@
 import { Answer } from '../answer/answer.model';
+import { Serializable } from 'selenium-webdriver';
 
 export class Question {
 id:number;

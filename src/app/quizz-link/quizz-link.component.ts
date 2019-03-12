@@ -23,7 +23,6 @@ export class QuizzLinkComponent implements OnInit,OnDestroy {
     this.newLinkForm = new FormGroup({
       'candidateMail': new FormControl('', Validators.email)
     });
-    console.log(this.router.url);
     const baseUrl = window.location.origin + this.router.createUrlTree(['/quizz-instance',this.quizzId]);
     this.link = baseUrl;
     this.newLinkForm.get('candidateMail').valueChanges.pipe(takeUntil(this.destroy$)).subscribe(mail => {

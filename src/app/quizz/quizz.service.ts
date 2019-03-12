@@ -25,7 +25,6 @@ export class QuizzService {
   }
 
   saveNewQuizz(newQuizzForm: FormGroup): Observable<any> {
-    console.log('inside saveNEwQuizz');
     let quizzContents = [];
     for (let content of newQuizzForm.get('contents').value) {
       quizzContents.push({

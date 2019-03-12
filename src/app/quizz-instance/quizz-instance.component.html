@@ -1,3 +1,30 @@
-<p>
-  quizz-instance works!
-</p>
+<form *ngIf="quizzInstance" [formGroup]="quizzCandidateForm">
+  <div class="form-group">
+    <!-- Mail -->
+    <label for="mail" class="font-weight-bold text-uppercase">Candidate mail</label>
+    <input type="text" id="mail" name="mail" placeholder="" class="form-control" formControlName="candidateMail"
+      value="{{ quizzInstance.candidate.mail  }}">
+  </div>
+  <hr>
+  <div class="form-group text-left">
+    <label for="contents" class="font-weight-bold text-uppercase">Questions</label>
+    <div formArrayName="questions">
+      <div class="row" *ngFor="let item of quizzInstance.actualQuestions; let i = index">
+        <div [formGroupName]="i" class="form-group">
+          <label for="id" class="font-weight-bold">{{ item.question.statement }}</label>
+          <input type="hidden" id="id" formControlName="id">
+          <div formArrayName="answers">
+            <div class="row" *ngFor="let answer of item.question.answers; let j = index" class="form-check">
+              <div class="form-group">
+                  <label class="form-check-label"><input class="form-check-input" type="checkbox" [value]="answer.id" (change)="onClickAnswer(i,j,$event)">
+                  {{ answer.statement }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success" [disabled]="!quizzCandidateForm.valid" (click)="onSubmit()">Submit</button>
+</form>
