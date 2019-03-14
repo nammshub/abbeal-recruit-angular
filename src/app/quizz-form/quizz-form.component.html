@@ -17,7 +17,7 @@
   <div class="form-group">
     <label for="contents" class="font-weight-bold text-uppercase" >Contents</label>
     <div formArrayName="contents">
-      <div class="row" *ngFor="let content of newQuizzForm.get('contents').controls; let i = index" [formGroupName]="i"
+      <div class="row" *ngFor="let content of formContents.controls; let i = index" [formGroupName]="i"
         style="margin-top: 10px;">
         <div class="col-md-4">
             <select class="form-control" formControlName="field">

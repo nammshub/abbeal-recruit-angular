@@ -72,4 +72,6 @@ export class QuizzFormComponent implements OnInit, OnDestroy {
     return contents.length > 0 ? null : { empty: true }
   }
 
+  get formContents() { return <FormArray>this.newQuizzForm.get('contents'); }
+
 }

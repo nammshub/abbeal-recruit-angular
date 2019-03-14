@@ -34,7 +34,7 @@ export class QuizzService {
         "number": content.number
       })
     }
-    return this.httpClient.post(environment.baseBackUrl+'/users/1/quizz',
+    return this.httpClient.post(environment.baseBackUrl+'/users/5/quizz',
       {
         "name": newQuizzForm.get('name').value,
         "quizzContents": quizzContents

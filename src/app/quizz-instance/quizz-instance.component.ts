@@ -56,7 +56,8 @@ export class QuizzInstanceComponent implements OnInit, OnDestroy {
   }
 
   onClickAnswer(questionIter: number, answerIter: number, event) {
-    let answers: FormArray = this.quizzCandidateForm.controls['questions'].at(questionIter).controls['answers'];
+    const questions:FormArray = this.quizzCandidateForm.controls['questions'] as FormArray
+    let answers: FormArray = questions.at(questionIter).get('answers') as FormArray;
     /* Selected */
     if (event.target.checked) {
       // Add a new control in the arrayForm
