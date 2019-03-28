@@ -13,10 +13,11 @@ export class QuestionService {
     private httpClient: HttpClient
   ) { }
 
-  getAllQuestionFields():Observable<any> {
-    return this.httpClient.get<string[]>(environment.baseBackUrl+'/questions/fields', {
+  getAllQuestionFields(): Observable<any> {
+    return this.httpClient.get<string[]>(environment.baseBackUrl + '/questions/fields', {
       observe: 'body',
-      responseType: 'json'
+      responseType: 'json',
+      withCredentials: true
     });
   }
 }

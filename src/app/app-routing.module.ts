@@ -5,13 +5,15 @@ import { QuizzInstanceComponent } from './quizz-instance/quizz-instance.componen
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { QuizzFormComponent } from './quizz-form/quizz-form.component';
 import { QuizzLinkComponent } from './quizz-link/quizz-link.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
   { path: 'quizz-form', component: QuizzFormComponent },
   { path: 'quizz-instance/:id', component: QuizzInstanceComponent },
   { path: 'quizz-link/:id', component: QuizzLinkComponent},
   { path: 'quizz', component: QuizzComponent },
-  { path: 'signup', component: SignUpComponent }
+  { path: 'signup', component: SignUpComponent },
+  { path: 'signin',component: SignInComponent }
 ];
 
 @NgModule({

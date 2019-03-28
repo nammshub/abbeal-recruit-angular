@@ -19,6 +19,7 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionService } from './question/question.service';
 import { QuizzLinkComponent } from './quizz-link/quizz-link.component';
 import { QuizzInstanceService } from './quizz-instance/quizz-instance-service';
+import { LoginService } from './user/login.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { QuizzInstanceService } from './quizz-instance/quizz-instance-service';
     HttpClient,
     QuestionService,
     QuizzInstanceService,
+    LoginService
   
     
   ],

@@ -18,9 +18,11 @@ export class QuizzService {
   ) { }
 
   getAllQuizz(): Observable<any> {
+    
     return this.httpClient.get<Quizz[]>(environment.baseBackUrl+'/quizz', {
-      observe: 'body',
-      responseType: 'json'
+      'observe': 'body',
+      'responseType': 'json',
+      'withCredentials': true
     });
 
   }

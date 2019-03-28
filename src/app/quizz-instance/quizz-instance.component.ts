@@ -38,7 +38,7 @@ export class QuizzInstanceComponent implements OnInit, OnDestroy {
         (quizzInstance: QuizzInstance) => {
           this.quizzInstance = quizzInstance;
           if (!this.quizzInstance.candidate) {
-            this.quizzInstance.candidate = new User(null, '', '', '', '');
+            this.quizzInstance.candidate = new User(null, '', '', '', '',null,);
           }
           this.quizzCandidateForm.get('candidateMail').setValue(this.quizzInstance.candidate.mail);
           for (let actualQuestion of this.quizzInstance.actualQuestions) {
