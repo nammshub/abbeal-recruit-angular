@@ -18,8 +18,8 @@ export class QuizzService {
   ) { }
 
   getAllQuizz(): Observable<any> {
-    
-    return this.httpClient.get<Quizz[]>(environment.baseBackUrl+'/quizz', {
+
+    return this.httpClient.get<Quizz[]>(environment.baseBackUrl + '/quizz', {
       'observe': 'body',
       'responseType': 'json',
       'withCredentials': true
@@ -36,21 +36,23 @@ export class QuizzService {
         "number": content.number
       })
     }
-    return this.httpClient.post(environment.baseBackUrl+'/users/5/quizz',
+    return this.httpClient.post(environment.baseBackUrl + '/quizz',
       {
         "name": newQuizzForm.get('name').value,
         "quizzContents": quizzContents
+      }, {
+        withCredentials: true
       });
   }
 
   activate(id: number): Observable<any> {
-    return this.httpClient.patch(environment.baseBackUrl+'/quizz/' + id + '/activate',
-      {});
+    return this.httpClient.patch(environment.baseBackUrl + '/quizz/' + id + '/activate', {},
+      { withCredentials: true });
   }
 
   deactivate(id: number): Observable<any> {
-    return this.httpClient.patch(environment.baseBackUrl+'/quizz/' + id + '/deactivate',
-      {});
+    return this.httpClient.patch(environment.baseBackUrl + '/quizz/' + id + '/deactivate', {},
+      { withCredentials: true });
   }
 
 

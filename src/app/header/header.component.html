@@ -21,10 +21,10 @@
       </ul>
     </div>
   </div>
-  <div *ngIf="!loginService.isLogged()" class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+  <div  class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" routerLink="/signup">Sign Up</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/signin">Sign In</a></li>
+      <li *ngIf="!loginService.isLogged()" class="nav-item"><a class="nav-link" routerLink="/signin">Log In</a></li>
+      <li *ngIf="loginService.isLogged()" class="nav-item"><a class="nav-link pointer" (click)="logOut()">Log out</a></li>
     </ul>
   </div>
 </nav>

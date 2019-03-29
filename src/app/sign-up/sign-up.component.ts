@@ -33,9 +33,16 @@ export class SignUpComponent implements OnInit {
     console.warn(this.signUpForm.value);
     const user: User = new User(null, this.signUpForm.controls.firstName.value, this.signUpForm.controls.lastName.value, this.signUpForm.controls.mail.value, null, this.signUpForm.controls.password.value);
     this.loginService.signup(user).pipe(takeUntil(this.destroy$)).subscribe({
-      next: savedUser => {
-        console.log(savedUser);
-        this.routerService.navigate(['/quizz']);
+      next: () => {
+        this.loginService.login(user.mail, user.password).pipe(takeUntil(this.destroy$)).subscribe({
+          next: () => {
+            this.loginService.loggedIn();
+            this.routerService.navigate(['/quizz']);
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
       }
     });
   }

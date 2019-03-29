@@ -16,18 +16,27 @@ export class LoginService {
         private http: HttpClient,
     ) { }
 
-    login(username: string, password: string): Observable<any> {
+    login(mail: string, password: string): Observable<any> {
         let url = environment.baseBackUrl + '/login';
         console.log(url)
         const body = new HttpParams()
-            .set(`username`, username)
+            .set(`mail`, mail)
             .set(`password`, password);
         const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
         return this.http.post(url, body.toString(), { headers, withCredentials: true });
     }
 
+    logout(): Observable<any> {
+        let url = environment.baseBackUrl + '/logout';
+        return this.http.get(url);
+    }
+
     loggedIn(): any {
         this.loggedin = true;
+    }
+
+    loggedOut(): any {
+        this.loggedin = false;
     }
 
     isLogged():boolean{
